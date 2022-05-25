@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { EncryptionAlgorithmComponent } from './encryption-algorithm.component';
 import { PlayfairComponent } from './playfair/playfair.component';
 import { DESComponent } from './des/des.component';
+import { RsaComponent } from './rsa/rsa.component';
 
 
 
@@ -19,7 +20,8 @@ import { DESComponent } from './des/des.component';
   declarations: [
     EncryptionAlgorithmComponent,
     PlayfairComponent,
-    DESComponent
+    DESComponent,
+    RsaComponent
   ],
   exports: [
     EncryptionAlgorithmComponent

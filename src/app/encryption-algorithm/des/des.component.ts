@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RSA_NO_PADDING } from 'constants';
 
 @Component({
   selector: 'app-des',
@@ -399,6 +400,7 @@ export class DESComponent implements OnInit {
     document.querySelector("div>p")!.textContent = '';
     this.subSecretKey = [];
     this.textArray = [];
+    
 
   }
 
