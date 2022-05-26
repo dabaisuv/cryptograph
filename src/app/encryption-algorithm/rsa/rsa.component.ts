@@ -42,11 +42,12 @@ export class RsaComponent implements OnInit {
   }
 
   encrypt() {
+    console.time('encrypt');
+    const start = new Date();
     if (this.secretKey === '') {
       alert("Not PublibKey")
     }
     const encryptedText = this.toBeProceessed;
-    this.clear()
     let cryptedArray: bigint[] = [];
     const EAndN = this.base64Tobig(this.publicKey);
     const textArray = new TextEncoder().encode(encryptedText);
@@ -57,9 +58,15 @@ export class RsaComponent implements OnInit {
       return v;
     });
     this.toBeProceessed = btoa(tempText.slice(0, -1));
+    const end = new Date();
+    this.display(`Encryption succeeded! (${(end.getTime() - start.getTime()) / 1000} s)`)
+    console.timeEnd('encrypt');
+    this.setStorage();
   }
 
   decrypt() {
+    console.time('decrypt');
+    const start = new Date();
     const encryptedText = this.base64ToStr(this.toBeProceessed);
     const tempArray = encryptedText.split(',');
     const DAndN = this.base64Tobig(this.secretKey);
@@ -70,7 +77,10 @@ export class RsaComponent implements OnInit {
     });
     const resultUint8Array = new Uint8Array(resultArray);
     this.toBeProceessed = new TextDecoder().decode(resultUint8Array)
-
+    const end = new Date();
+    this.display(`Decryption succeeded! (${(end.getTime() - start.getTime()) / 1000} s)`)
+    console.timeEnd('dncrypt');
+    this.setStorage();
   }
   setStorage() {
     this.ngf.setItem('toBeProceessed', this.toBeProceessed).then();
@@ -321,7 +331,6 @@ export class RsaComponent implements OnInit {
   }
   clear() {
     document.querySelector("div>p")!.textContent = '';
-
   }
 
   display(text: string) {
