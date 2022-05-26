@@ -81,14 +81,6 @@ export class RsaComponent implements OnInit {
 
   base64Tobig(str: string) {
     const buffer = atob(str);
-    //fixed a bug!!!
-    if (buffer.split('+++')[0][0] === '-') {
-      return {
-        big1: BigInt('-0x' + buffer.split("+++")[0].slice(1)),
-        big2: BigInt('0x' + buffer.split("+++")[1])
-      }
-
-    }
     return {
       big1: BigInt('0x' + buffer.split("+++")[0]),
       big2: BigInt('0x' + buffer.split("+++")[1])
@@ -155,7 +147,7 @@ export class RsaComponent implements OnInit {
     while (true) {
       const random = this.get2048Random() % euler_n;
       const result = this.exd_eculid(euler_n, random);
-      if (result.gcd === 1n && result.inverse !== null) {
+      if (result.gcd === 1n && result.inverse !== null && result.inverse > 0) {
         return {
           E: random,
           D: result.inverse
@@ -329,7 +321,7 @@ export class RsaComponent implements OnInit {
   }
   clear() {
     document.querySelector("div>p")!.textContent = '';
-    this.toBeProceessed = '';
+
   }
 
   display(text: string) {
