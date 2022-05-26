@@ -1,3 +1,8 @@
+**This is my practice code, don't laugh at it.**
+
+#History
+> 2022.5.26: Added manual implementation of RSA algorithm
+
 # Cryptograph
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
