@@ -1,4 +1,4 @@
-<mat-tab-group class="mat-tab-group">
+<mat-tab-group class="mat-tab-group" [(selectedIndex)]='index' (selectedTabChange)="indexChanged()" >
     <mat-tab label="Playfair">
         <app-playfair></app-playfair>
     </mat-tab>

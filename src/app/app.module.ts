@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { EncryptionAlgorithmModule } from './encryption-algorithm/encryption-algorithm.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
+
   declarations: [
     AppComponent,
   ],
@@ -15,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     EncryptionAlgorithmModule,
     BrowserAnimationsModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

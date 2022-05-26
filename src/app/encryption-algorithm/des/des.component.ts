@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RSA_NO_PADDING } from 'constants';
+import * as localforage from 'localforage';
 
 @Component({
   selector: 'app-des',
@@ -9,6 +9,7 @@ import { RSA_NO_PADDING } from 'constants';
 export class DESComponent implements OnInit {
 
   constructor() { }
+  ngf: LocalForage = localforage.createInstance({ name: 'encryption-algorithm', storeName: 'des' });
   secretKey: string = "";
   toBeProceessed: string = "";
   pc_1: number[] = [
@@ -400,7 +401,7 @@ export class DESComponent implements OnInit {
     document.querySelector("div>p")!.textContent = '';
     this.subSecretKey = [];
     this.textArray = [];
-    
+
 
   }
 
@@ -472,7 +473,13 @@ export class DESComponent implements OnInit {
     }).join('  ');
   }
 
+  setStorage() {
+    this.ngf.setItem<string>('secretKey', this.secretKey).then(v => { if (v) this.secretKey = v });
+    this.ngf.setItem<string>('toBeProceessed', this.toBeProceessed).then(v => { if (v) this.toBeProceessed = v });
+  }
   ngOnInit(): void {
+    this.ngf.getItem<string>('secretKey').then(v => { if (v) this.secretKey = v });
+    this.ngf.getItem<string>('toBeProceessed').then(v => { if (v) this.toBeProceessed = v });
   }
 
 }

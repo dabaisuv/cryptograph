@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as localforage from 'localforage';
 
 @Component({
   selector: 'app-playfair',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playfair.component.sass']
 })
 export class PlayfairComponent implements OnInit {
+  ngf: LocalForage = localforage.createInstance({ name: 'encryption-algorithm', storeName: 'playfair' });
   secretKey: string = "";
   encryptionMotrix: string[][] = [];
   toBeProceessed: string = "";
@@ -219,8 +221,13 @@ export class PlayfairComponent implements OnInit {
     return decrypted;
 
   }
-
+  setStorage() {
+    this.ngf.setItem<string>('secretKey', this.secretKey).then(v => { if (v) this.secretKey = v });
+    this.ngf.setItem<string>('toBeProceessed', this.toBeProceessed).then(v => { if (v) this.toBeProceessed = v });
+  }
   ngOnInit(): void {
+    this.ngf.getItem<string>('secretKey').then(v => { if (v) this.secretKey = v });
+    this.ngf.getItem<string>('toBeProceessed').then(v => { if (v) this.toBeProceessed = v });
   }
 
 }

@@ -1,7 +1,7 @@
 <div>
     <mat-form-field class="input_text" appearance="fill">
         <mat-label class="mat-label">Text:</mat-label>
-        <textarea matInput placeholder="text awaiting encryption or decryption."
+        <textarea matInput placeholder="text awaiting encryption or decryption." (change)="setStorage()"
             [(ngModel)]="toBeProceessed"></textarea>
     </mat-form-field>
 </div>
@@ -10,7 +10,7 @@
 </div>
 <mat-form-field class="input_key" appearance="fill">
     <mat-label class="mat-label">Key:</mat-label>
-    <input matInput placeholder="secret key." [(ngModel)]="secretKey">
+    <input matInput placeholder="secret key." [(ngModel)]="secretKey" (change)="setStorage()">
 </mat-form-field>
 <button mat-stroked-button color="primary" (click)="genMatrix()">Generate Matrix</button>
 <button mat-stroked-button color="primary" (click)="encrypt()">Encrypt</button>

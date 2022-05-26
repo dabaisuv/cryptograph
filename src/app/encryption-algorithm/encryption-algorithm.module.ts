@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { EncryptionAlgorithmComponent } from './encryption-algorithm.component';
@@ -14,14 +14,14 @@ import { DESComponent } from './des/des.component';
 import { RsaComponent } from './rsa/rsa.component';
 
 
-
-
 @NgModule({
+
   declarations: [
     EncryptionAlgorithmComponent,
     PlayfairComponent,
     DESComponent,
-    RsaComponent
+    RsaComponent,
+    
   ],
   exports: [
     EncryptionAlgorithmComponent
@@ -31,8 +31,9 @@ import { RsaComponent } from './rsa/rsa.component';
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
-
+    FormsModule,
+    MatProgressSpinnerModule,
+    
   ]
 })
 export class EncryptionAlgorithmModule { }
