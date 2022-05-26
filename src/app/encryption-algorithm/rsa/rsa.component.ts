@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as localForage from 'localforage';
+import { bufferToggle } from 'rxjs';
 
 @Component({
   selector: 'app-rsa',
@@ -80,6 +81,14 @@ export class RsaComponent implements OnInit {
 
   base64Tobig(str: string) {
     const buffer = atob(str);
+    //fixed a bug!!!
+    if (buffer.split('+++')[0][0] === '-') {
+      return {
+        big1: BigInt('-0x' + buffer.split("+++")[0].slice(1)),
+        big2: BigInt('0x' + buffer.split("+++")[1])
+      }
+
+    }
     return {
       big1: BigInt('0x' + buffer.split("+++")[0]),
       big2: BigInt('0x' + buffer.split("+++")[1])
